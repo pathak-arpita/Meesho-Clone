@@ -82,6 +82,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media only screen and (max-width: 500px){
+    margin-left:-40px;
+    position:fixed;
+  }
 `;
 
 const Logo = styled.div`
