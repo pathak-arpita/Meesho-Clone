@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Card from "./Card";
 import { useStateValue } from "../StateProvider";
 import Navbar from "./Navbar";
-import NavBar2 from './NavBar2'
+ import NavBar2 from './NavBar2'
 
 function Home() {
   const [products, setProducts] = useState("");

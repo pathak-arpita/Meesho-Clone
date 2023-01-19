@@ -61,10 +61,10 @@ const Container = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
+  top:0;
   position: sticky;
-  top: 0;
   z-index:2000;
-  position:fixed;
+
 
   @media only screen and (max-width: 767px) {
     height: 120px;
