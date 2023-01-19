@@ -21,5 +21,38 @@
 .home_link:hover {
     color: palevioletred;
     font-size: 18px;
-    border-bottom: 1px solid rgb(244, 51, 151);
+    /* border-bottom: 1px solid rgb(244, 51, 151); */
+}
+
+@media(max-width:580px) {
+    .home_nav{
+        top:120px;
+        font-size: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: center;
+    }
+   
+    .home_link:hover {
+        color: palevioletred;
+        font-size: 10px;
+        
+    }
+}
+
+@media (max-width:780px) {
+    .home_nav{  
+        top:120px;
+        font-size: 11px; 
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: center;
+    }
+    .home_link:hover {
+        color: palevioletred;
+        font-size: 10px;
+        
+    }
 }

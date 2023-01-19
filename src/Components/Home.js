@@ -97,7 +97,11 @@ const Main = styled.div`
     grid-template-columns: repeat(2, 50%);
     grid-gap: 0;
   }
-
+  
+  @media (min-width: 767px) and (max-width: 1200px){
+    grid-template-columns: repeat(3, 32%);
+    grid-gap: 0;
+  }
   
   @media only screen and (min-width: 767px) {
     margin-top: -130px;
