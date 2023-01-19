@@ -41,7 +41,7 @@
     }
 }
 
-@media (max-width:780px) {
+@media (min-width:580px)and(max-width:780px) {
     .home_nav{  
         top:120px;
         font-size: 11px; 

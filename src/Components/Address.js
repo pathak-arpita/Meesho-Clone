@@ -110,12 +110,12 @@ const Container = styled.div`
 
   margin: auto;
   background-color: rgb(234, 237, 237);
-
   position: relative;
 `;
 
 const Main = styled.div`
   padding: 15px;
+
 `;
 
 const FormContainer = styled.form`
@@ -143,6 +143,16 @@ const FormContainer = styled.form`
     border-radius: 5px;
     cursor: pointer;
   }
+  @media only screen and (max-width: 767px){
+    button{
+      margin-left:50px;
+    }
+  }
+  @media (min-width: 900px) and (max-width: 1400px){
+    button{
+      margin-left:100px;
+    }
+  }
 `;
 
 const InputContainer = styled.div`
@@ -163,6 +173,13 @@ const InputContainer = styled.div`
     margin-top: 5px;
 
     &:hover {
+      border: 1px solid palevioletred;;
+    }
+  }
+  @media only screen and (max-width: 767px){
+    width:70%;
+    margin-left:-50px;
+    input:hover {
       border: 1px solid palevioletred;;
     }
   }

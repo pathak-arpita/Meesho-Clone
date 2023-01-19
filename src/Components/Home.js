@@ -87,7 +87,7 @@ const Main = styled.div`
   justify-content: center;
   place-items: center;
   width: 100%;
-
+  height:100%;
   grid-auto-rows: 420px;
   grid-template-columns: repeat(4, 280px);
   grid-gap: 20px;
@@ -96,16 +96,20 @@ const Main = styled.div`
   @media only screen and (max-width: 767px) {
     grid-template-columns: repeat(2, 50%);
     grid-gap: 0;
+    height: 100%;
+    // height: fit-content;
   }
   
   @media (min-width: 767px) and (max-width: 1200px){
     grid-template-columns: repeat(3, 32%);
     grid-gap: 0;
+    height: 100%;
   }
   
   @media only screen and (min-width: 767px) {
     margin-top: -130px;
     padding: 10px 0px;
+    height: fit-content;
   }
 `;
 export default Home;
