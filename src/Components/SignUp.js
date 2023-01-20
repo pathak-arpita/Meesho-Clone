@@ -1,61 +1,83 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "../axios";
+// import axios from "../axios";
 function SignUp() {
   const navigate = useNavigate();
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [login, setLogin] = useState({
+    "name": "",
 
+    "email": "",
+
+    "password": "",
+  });
+ 
+  let loginData ;
+  if(localStorage.getItem("loginDetails")===null){
+    loginData = [];
+  }
+  else{
+    loginData = JSON.parse(localStorage.getItem("loginDetails"));
+  }
+  // console.log(loginData);
   const signup = (e) => {
-    e.preventDefault();
-    axios
-      .post("/auth/signup", { email, password, fullName })
-      .then((res) => alert(res.data.message))
-      .catch((err) => console.warn(err));
-
-    navigate("/login");
+    // e.preventDefault();
+   console.log(login);
+    // const initialData = {...loginData};
+    loginData.push(login);
+    localStorage.setItem("loginDetails",JSON.stringify(loginData))
   };
+
   return (
     <Container>
       <Logo onClick={() => navigate("/")}>
-        <img src='https://etimg.etb2bimg.com/photo/87203105.cms' alt="" />
+        <img src="https://etimg.etb2bimg.com/photo/87203105.cms" alt="" />
       </Logo>
-      <FormContainer>
-        <h3>Sign-Up</h3>
-        <InputContainer>
-          <p>FullName</p>
-          <input
-            type="text"
-            placeholder="Arpita Pathak"
-            onChange={(e) => setFullName(e.target.value)}
-            value={fullName}
-          />
-        </InputContainer>
-        <InputContainer>
-          <p>Email</p>
-          <input
-            type="email"
-            placeholder="example@example.com"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-        </InputContainer>
-        <InputContainer>
-          <p>Password</p>
-          <input
-            type="password"
-            placeholder="********"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
-        </InputContainer>
+      <form>
+        <FormContainer>
+          <h3>Sign-Up</h3>
 
-        <SignUpButton onClick={signup}>Create Account in Meesho</SignUpButton>
-      </FormContainer>
-
+          <InputContainer>
+            <p>FullName</p>
+            <input
+              type="text"
+              placeholder="Arpita Pathak"
+              name="name"
+              value={login.name}
+              onChange={(e) => {
+                console.log(e.target.value);
+                setLogin({ ...login, [e.target.name]: e.target.value });
+              }}
+            />
+          </InputContainer>
+          <InputContainer>
+            <p>Email</p>
+            <input
+              type="email"
+              placeholder="example@example.com"
+              name="email"
+              value={login.email}
+              onChange={(e) => {
+                setLogin({ ...login, [e.target.name]: e.target.value });
+              }}
+            />
+          </InputContainer>
+          <InputContainer>
+            <p>Password</p>
+            <input
+              type="password"
+              placeholder="****"
+              name="password"
+              value={login.password}
+              onChange={(e) => {
+                setLogin({ ...login, [e.target.name]: e.target.value });
+              }}
+            />
+          </InputContainer>
+          <SignUpButton onClick={(e) =>{signup(e)}}>Create Account in Meesho</SignUpButton>
+        </FormContainer>
+      </form>
       <LoginButton onClick={() => navigate("/login")}>
         Back to Login
       </LoginButton>
@@ -72,8 +94,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   
-  @media only screen and (max-width: 500px){
-    margin-left:-40px;
+  @media  (max-width: 780px){
+    margin-left:-80px;
     position:fixed;
   }
 `;
@@ -88,20 +110,18 @@ const Logo = styled.div`
 
 const FormContainer = styled.form`
   border: 1px solid lightgray;
-  width: 55%;
+  width: 120%;
   height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 15px;
-
   h3 {
     font-size: 28px;
     font-weight: 400;
     line-height: 33px;
     align-self: flex-start;
-
     margin-bottom: 10px;
   }
 `;
@@ -109,12 +129,10 @@ const FormContainer = styled.form`
 const InputContainer = styled.div`
   width: 100%;
   padding: 10px;
-
   p {
     font-size: 14px;
     font-weight: 600;
   }
-
   input {
     width: 95%;
     height: 33px;
@@ -122,7 +140,6 @@ const InputContainer = styled.div`
     border-radius: 5px;
     border: 1px solid lightgray;
     margin-top: 5px;
-
     &:hover {
       border: 2px solid palevioletred;
     }
@@ -134,7 +151,6 @@ const SignUpButton = styled.button`
   height: 35px;
   font-size: 12px;
   margin-top: 20px;
-
   &:hover {
     background-color: #dfdfdf;
     border: 1px solid gray;
@@ -149,6 +165,13 @@ const LoginButton = styled.button`
   outline: none;
   border-radius: 10px;
   margin-top: 30px;
+
+  @media  (max-width: 780px){
+    margin-left:80px;
+  }
+  @media (min-width: 750px) or (max-width:1400px){
+    margin-left:100px;
+  }
 `;
 
 export default SignUp;
