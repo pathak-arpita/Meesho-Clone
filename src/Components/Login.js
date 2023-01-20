@@ -1,36 +1,37 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import axios from "../axios";
 import { useStateValue } from "../StateProvider";
+
 function Login() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+   const navigate = useNavigate();
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+
+  const [login1, setLogin] = useState({
+    
+    "email": "",
+
+    "password": "",
+  });
 
   const [{}, dispatch] = useStateValue();
 
   const login = (e) => {
     e.preventDefault();
+    const logedUser = JSON.parse(localStorage.getItem("loginDetails"));
+    console.log(logedUser[0].email);
+    console.log(logedUser[0].password);
 
-    axios
-      .post("/auth/login", { email, password })
-      .then((res) => {
-        if (!res.data.error) {
-          dispatch({
-            type: "SET_USER",
-            user: res.data,
-          });
-
-          localStorage.setItem("user", JSON.stringify(res.data));
-
-          navigate("/");
-        } else if (res.data.error) {
-          alert(res.data.error);
-        }
-      })
-      .catch((err) => console.warn(err));
+    if(login1.email === logedUser[0].email && login1.password === logedUser[0].password){
+      navigate("/");
+    }
+    else{
+      alert("Please Enter Valid Details");
+    }
   };
+  
+  
   return (
     <Container>
       <Logo onClick={() => navigate("/")}>
@@ -43,20 +44,26 @@ function Login() {
         <InputContainer>
           <p>Email</p>
           <input
-            type="email"
-            placeholder="example@example.com"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
+              type="email"
+              placeholder="example@example.com"
+              name="email"
+              value={login1.email}
+              onChange={(e) => {
+                setLogin({ ...login1, [e.target.name]: e.target.value });
+              }}
+            />
         </InputContainer>
         <InputContainer>
           <p>Password</p>
           <input
-            type="password"
-            placeholder="********"
-            onChange={(e) => setPassword(e.target.value)}
-            value={password}
-          />
+              type="password"
+              placeholder="****"
+              name="password"
+              value={login1.password}
+              onChange={(e) => {
+                setLogin({ ...login1, [e.target.name]: e.target.value });
+              }}
+            />
         </InputContainer>
 
         <LoginButton onClick={login}>Login</LoginButton>

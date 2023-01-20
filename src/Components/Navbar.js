@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { useStateValue } from "../StateProvider";
 
+
 function Navbar() {
+  const logedUser = JSON.parse(localStorage.getItem("loginDetails"));
+  console.log(logedUser)
   const [{ basket, user }, dispatch] = useStateValue();
   const navigate = useNavigate();
 
@@ -13,9 +16,9 @@ function Navbar() {
       user: null,
     });
 
-    localStorage.removeItem("user");
-    navigate("/");
-  };
+     localStorage.removeItem("logedUser");
+     navigate("/");
+   };
   return (
     <Container>
       <Inner>
@@ -33,8 +36,9 @@ function Navbar() {
             onClick={user ? () => signOut() : () => navigate("/login")}
           >
             <p>Profile,</p>
-            <p>{user ? user?.fullName : "Guest"}</p>
+            <p>{logedUser ? logedUser[0].name : "Guest"}</p>
           </NavButton>
+          {console.log(logedUser.name)}
           <NavButton onClick={() => navigate("/orders")}>
             <p>Return</p>
             <p>& Orders</p>
