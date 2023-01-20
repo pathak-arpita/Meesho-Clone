@@ -5,7 +5,7 @@ import { useStateValue } from "../StateProvider";
 
 
 function Navbar() {
-  const logedUser = JSON.parse(localStorage.getItem("loginDetails"));
+ const logedUser = JSON.parse(localStorage.getItem("loginDetails"));
   console.log(logedUser)
   const [{ basket, user }, dispatch] = useStateValue();
   const navigate = useNavigate();
@@ -36,10 +36,9 @@ function Navbar() {
           <NavButton
             onClick={user ? () => signOut() : () => navigate("/login")}
           >
-            <p>Profile,</p>
-            <p>{logedUser ? logedUser[0].name : "Guest"}</p>
+            <p>User ,</p>
+            <p>{logedUser === null ? "Sign In" : "Sign Out"}</p>
           </NavButton>
-          {console.log(logedUser.name)}
           <NavButton onClick={() => navigate("/orders")}>
             <p>Return</p>
             <p>& Orders</p>
