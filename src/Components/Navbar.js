@@ -11,12 +11,12 @@ function Navbar() {
   const navigate = useNavigate();
 
   const signOut = () => {
-    dispatch({
-      type: "SET_USER",
-      user: null,
-    });
+    // dispatch({
+    //   type: "SET_USER",
+    //   user: null,
+    // });
 
-     localStorage.removeItem("logedUser");
+    //  localStorage.removeItem("logedUser");
      navigate("/");
    };
    

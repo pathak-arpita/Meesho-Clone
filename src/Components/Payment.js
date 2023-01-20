@@ -26,12 +26,12 @@ function Payment() {
     };
 
     fetchClientSecret();
-    console.log("clientSecret is >>>>", clientSecret);
+    // console.log("clientSecret is >>>>", clientSecret);
   }, []);
 
   const confirmPayment = async (e) => {
     e.preventDefault();
-
+    alert("Your Order is Successfully done")
     await stripe
       .confirmCardPayment(clientSecret, {
         payment_method: {
