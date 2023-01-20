@@ -10,15 +10,16 @@ function Navbar() {
   const [{ basket, user }, dispatch] = useStateValue();
   const navigate = useNavigate();
 
-  // const signOut = () => {
-  //   dispatch({
-  //     type: "SET_USER",
-  //     user: null,
-  //   });
+  const signOut = () => {
+    dispatch({
+      type: "SET_USER",
+      user: null,
+    });
 
-  //    localStorage.removeItem("logedUser");
-  //    navigate("/");
-  //  };
+     localStorage.removeItem("logedUser");
+     navigate("/");
+   };
+   
   return (
     <Container>
       <Inner>
