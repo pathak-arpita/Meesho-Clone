@@ -153,7 +153,7 @@ const Product = styled.div`
 const Image = styled.div`
   flex: 0.3;
   margin-top:20px;
-  margin-right:120px;
+  margin-right:70px;
   img {
     width: 100%;
   }
