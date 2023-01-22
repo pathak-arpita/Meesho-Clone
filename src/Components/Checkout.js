@@ -17,7 +17,7 @@ function Checkout() {
     });
   };
 
-  console.log("checkout >>>>>", basket);
+  // console.log("checkout >>>>>", basket);
   return (
     <Container>
       <Navbar />
@@ -152,6 +152,8 @@ const Product = styled.div`
 
 const Image = styled.div`
   flex: 0.3;
+  margin-top:20px;
+  margin-right:120px;
   img {
     width: 100%;
   }

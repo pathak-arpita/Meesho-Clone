@@ -94,8 +94,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   
-  @media  (max-width: 780px){
-    margin-left:-80px;
+  @media only screen and (max-width: 500px){
+    margin-left:-40px;
     position:fixed;
   }
 `;
@@ -103,6 +103,7 @@ const Container = styled.div`
 const Logo = styled.div`
   width: 120px;
   margin-bottom: 20px;
+  margin-left: 50px;
   img {
     width: 100%;
   }
@@ -110,7 +111,7 @@ const Logo = styled.div`
 
 const FormContainer = styled.form`
   border: 1px solid lightgray;
-  width: 120%;
+  width: 130%;
   height: 400px;
   display: flex;
   flex-direction: column;
@@ -170,7 +171,7 @@ const LoginButton = styled.button`
     margin-left:80px;
   }
   @media (min-width: 750px) or (max-width:1400px){
-    margin-left:100px;
+    margin-left:80px;
   }
 `;
 

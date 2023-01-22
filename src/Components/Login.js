@@ -74,7 +74,7 @@ function Login() {
         </InfoText>
       </FormContainer>
       <SignUpButton onClick={() => navigate("/signup")}>
-        Create Account in Messho
+        Create Account in Meesho
       </SignUpButton>
     </Container>
   );

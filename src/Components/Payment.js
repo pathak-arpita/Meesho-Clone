@@ -31,7 +31,7 @@ function Payment() {
 
   const confirmPayment = async (e) => {
     e.preventDefault();
-    alert("Your Order is Successfully done")
+    alert("Thanks for shopping!");
     await stripe
       .confirmCardPayment(clientSecret, {
         payment_method: {
@@ -196,6 +196,8 @@ const Product = styled.div`
 
 const Image = styled.div`
   flex: 0.3;
+  margin-top: 20px;
+  margin-right: 120px;
   img {
     width: 100%;
   }
@@ -257,7 +259,7 @@ const Subtotal = styled.div`
     width: 65%;
     height: 33px;
     margin-top: 20px;
-    color:white;
+    color: white;
     background-color: rgb(244, 51, 151);
     border: none;
     outline: none;
