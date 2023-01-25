@@ -19,11 +19,11 @@ function Login() {
 
   const login = (e) => {
     e.preventDefault();
-    const logedUser = JSON.parse(localStorage.getItem("loginDetails"));
-    console.log(logedUser[0].email);
-    console.log(logedUser[0].password);
+    const logedUser = JSON.parse(localStorage.getItem("loginDetails")).some(data => login1.email === data.email && login1.password === data.password);
+    console.log(logedUser.email);
+    console.log(logedUser.password);
 
-    if(login1.email === logedUser[0].email && login1.password === logedUser[0].password){
+    if(logedUser){
       navigate("/");
     }
     else{

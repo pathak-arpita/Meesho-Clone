@@ -11,8 +11,8 @@ import { useNavigate } from "react-router-dom";
 
 function Payment() {
   const [{ address, basket, user }, dispatch] = useStateValue();
-  const [clientSecret, setClientSecret] = useState("");
-  const elements = useElements();
+   const [clientSecret, setClientSecret] = useState("");
+   const elements = useElements();
   const stripe = useStripe();
 
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ function Payment() {
         amount: getBasketTotal(basket),
       });
 
-      setClientSecret(data.data.clientSecret);
+       setClientSecret(data.data.clientSecret);
     };
 
     fetchClientSecret();

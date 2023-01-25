@@ -31,8 +31,9 @@ function Home() {
       <Main>
         {products &&
           products?.data.map((product) => (
-            <Card
-              id={product._id}
+            <Card 
+             key={product.id}
+              id={product.id}
               image={product.image}
               price={product.price}
               rating={product.rating.rate}
