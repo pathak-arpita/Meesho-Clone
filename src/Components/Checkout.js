@@ -27,7 +27,7 @@ function Checkout() {
           <h2>Shopping Cart</h2>
 
           {basket?.map((product) => (
-            <Product>
+            <Product key={product.id}>
               <Image>
                 <img src={product.image} alt="" />
               </Image>

@@ -1,57 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import CurrencyFormat from "react-currency-format";
 import styled from "styled-components";
 import { getBasketTotal } from "../reducer";
 import { useStateValue } from "../StateProvider";
 
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Navbar from "./Navbar";
-import axios from "../axios";
 import { useNavigate } from "react-router-dom";
 
 function Payment() {
-  const [{ address, basket, user }, dispatch] = useStateValue();
-   const [clientSecret, setClientSecret] = useState("");
-   const elements = useElements();
-  const stripe = useStripe();
-
+  const [{ address, basket }, dispatch] = useStateValue();
   const navigate = useNavigate();
-  useEffect(() => {
-    const fetchClientSecret = async () => {
-      const data = await axios.post("/payment/create", {
-        amount: getBasketTotal(basket),
-      });
-
-       setClientSecret(data.data.clientSecret);
-    };
-
-    fetchClientSecret();
-    // console.log("clientSecret is >>>>", clientSecret);
-  }, []);
 
   const confirmPayment = async (e) => {
     e.preventDefault();
     alert("Thanks for shopping!");
-    await stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-      })
-      .then((result) => {
-        axios.post("/orders/add", {
-          basket: basket,
-          price: getBasketTotal(basket),
-          email: user?.email,
-          address: address,
-        });
+    dispatch({
+      type: "EMPTY_BASKET",
+    });
+    navigate("/");
+  };
 
-        dispatch({
-          type: "EMPTY_BASKET",
-        });
-        navigate("/");
-      })
-      .catch((err) => console.warn(err));
+  const [isChecked, setIsChecked] = useState(false);
+  const handleOnChange = () => {
+    setIsChecked(!isChecked);
   };
 
   return (
@@ -82,11 +53,25 @@ function Payment() {
             <h5>Payment Method</h5>
 
             <div>
-              <p>Card Details</p>
-
-              {/* Card Element */}
-
-              <CardElement />
+              <label>
+                <input
+                  type="checkbox"
+                  value="1"
+                  id="Card Payment"
+                  checked={isChecked}
+                  onChange={handleOnChange}
+                />
+                Card Payment
+              </label>
+              <label>
+                <input
+                  type="checkbox"
+                  value="2"
+                  checked={!isChecked}
+                  onChange={handleOnChange}
+                />
+                Cash on Delivery
+              </label>
             </div>
           </PaymentContainer>
 
@@ -95,7 +80,7 @@ function Payment() {
 
             <div>
               {basket?.map((product) => (
-                <Product>
+                <Product key={product.id}>
                   <Image>
                     <img src={product.image} alt="" />
                   </Image>
@@ -179,6 +164,12 @@ const PaymentContainer = styled.div`
     margin-top: 15px;
     margin-left: 15px;
 
+    label {
+      margin-right: 15px;
+    }
+    input {
+      margin-right: 2px;
+    }
     p {
       font-size: 14px;
     }
