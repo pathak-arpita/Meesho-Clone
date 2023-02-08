@@ -16,7 +16,18 @@ function Checkout() {
       id: id,
     });
   };
+  
+  const checkout = (e) => {
+    e.preventDefault();
+    const logedUser = JSON.parse(localStorage.getItem("loginDetails"));
 
+    if(logedUser === null){
+       alert("Please Login First");
+    }
+    else{
+      navigate("/address");
+    }
+  };
   // console.log("checkout >>>>>", basket);
   return (
     <Container>
@@ -63,7 +74,7 @@ function Checkout() {
             prefix={"₹ "}
           />
 
-          <button onClick={() => navigate("/address")}>
+          <button onClick={checkout}>
             Proceed to Checkout
           </button>
         </Subtotal>
