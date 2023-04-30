@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStateValue } from "../StateProvider";
 import styled from "styled-components";
 import Navbar from "./Navbar";
 import CurrencyFormat from "react-currency-format";
 import { getBasketTotal } from "../reducer";
 import { useNavigate } from "react-router-dom";
+
 function Checkout() {
   const [{ basket }, dispatch] = useStateValue();
+  
   const navigate = useNavigate();
+
   const removeFromBasket = (e, id) => {
     e.preventDefault();
 
@@ -16,15 +19,13 @@ function Checkout() {
       id: id,
     });
   };
-  
   const checkout = (e) => {
     e.preventDefault();
     const logedUser = JSON.parse(localStorage.getItem("loginDetails"));
 
-    if(logedUser === null){
-       alert("Please Login First");
-    }
-    else{
+    if (logedUser === null) {
+      alert("Please Login First");
+    } else {
       navigate("/address");
     }
   };
@@ -44,9 +45,9 @@ function Checkout() {
               </Image>
               <Description>
                 <h4>{product.title}</h4>
-
-                <p>₹ {product.price}</p>
-
+                <h4>
+                 ₹ {product.price} 
+                </h4>
                 <button onClick={(e) => removeFromBasket(e, product.id)}>
                   Remove
                 </button>
@@ -74,9 +75,7 @@ function Checkout() {
             prefix={"₹ "}
           />
 
-          <button onClick={checkout}>
-            Proceed to Checkout
-          </button>
+          <button onClick={checkout}>Proceed to Checkout</button>
         </Subtotal>
       </Main>
     </Container>
@@ -88,14 +87,15 @@ const Container = styled.div`
   max-width: 1400px;
   height: fit-content;
   margin: auto;
-  background-color: rgb(234, 237, 237);
+
   border: 2px solid palevioletred;
   position: relative;
 `;
 const Main = styled.div`
   display: flex;
   padding: 15px;
-
+  margin-top: 55px;
+  background-color: rgb(234, 237, 237);
   @media only screen and (max-width: 1200px) {
     flex-direction: column;
   }
@@ -147,7 +147,7 @@ const Subtotal = styled.div`
     width: 65%;
     height: 33px;
     margin-top: 20px;
-    color:white;
+    color: white;
     background-color: rgb(244, 51, 151);
     border: none;
     outline: none;
@@ -163,8 +163,8 @@ const Product = styled.div`
 
 const Image = styled.div`
   flex: 0.3;
-  margin-top:20px;
-  margin-right:70px;
+  margin-top: 20px;
+  margin-right: 70px;
   img {
     width: 100%;
   }

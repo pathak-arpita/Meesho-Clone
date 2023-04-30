@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-// import axios from "../axios";
+import {Title} from "./Navbar"
+
 function SignUp() {
   const navigate = useNavigate();
 
@@ -32,7 +33,7 @@ function SignUp() {
   return (
     <Container>
       <Logo onClick={() => navigate("/")}>
-        <img src="https://etimg.etb2bimg.com/photo/87203105.cms" alt="" />
+        <Title />
       </Logo>
       <form>
         <FormContainer>
@@ -101,13 +102,12 @@ const Container = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 120px;
-  margin-bottom: 20px;
-  margin-left: 50px;
-  img {
-    width: 100%;
-  }
-`;
+  margin-left: 30px;
+     Title{
+        width:120px;
+     }
+  `;
+
 
 const FormContainer = styled.form`
   border: 1px solid lightgray;

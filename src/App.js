@@ -9,10 +9,12 @@ import Login from "./Components/Login";
 import Payment from "./Components/Payment";
 import SignUp from "./Components/SignUp";
 
-import AddProduct from "./Components/AddProduct";
+// import AddProduct from "./Components/AddProduct";
 import Orders from "./Components/Orders";
 
 
+import"../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import "../node_modules/font-awesome/css/font-awesome.min.css"
 function App() {
   return (
     <Router>
@@ -24,8 +26,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/address" element={<Address />} />
-          <Route path="/payment"  element={<Payment />}  />
-          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/payment"  element={<Payment />}  /> 
           <Route path="/orders" element={<Orders />} />
         </Routes>
       </Container>

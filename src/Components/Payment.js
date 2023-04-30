@@ -121,13 +121,14 @@ const Container = styled.div`
   width: 100%;
 
   max-width: 1400px;
-  background-color: rgb(234, 237, 237);
+
 `;
 
 const Main = styled.div`
   padding: 15px;
   display: flex;
-
+  background-color: rgb(234, 237, 237);
+  margin-top: 55px;
   @media only screen and (max-width: 1200px) {
     flex-direction: column;
   }

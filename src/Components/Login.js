@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
+import {Title} from "./Navbar"
 
 function Login() {
    const navigate = useNavigate();
@@ -35,8 +36,8 @@ function Login() {
   return (
     <Container>
       <Logo onClick={() => navigate("/")}>
-        <img src='https://etimg.etb2bimg.com/photo/87203105.cms' alt="" />
-      </Logo>
+          <Title/>
+        </Logo>
 
       <FormContainer>
         <h3>Sign-In</h3>
@@ -57,7 +58,7 @@ function Login() {
           <p>Password</p>
           <input
               type="password"
-              placeholder="****"
+              placeholder="*******"
               name="password"
               value={login1.password}
               onChange={(e) => {
@@ -97,16 +98,15 @@ const Container = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 120px;
-  margin-bottom: 20px;
-  img {
-    width: 100%;
-  }
-`;
+  margin-left: -21px;
+     Title{
+        width:120px;
+     }
+  `;
 
 const FormContainer = styled.form`
   border: 1px solid lightgray;
-  width: 55%;
+  width: 60%;
   height: 400px;
   display: flex;
   flex-direction: column;

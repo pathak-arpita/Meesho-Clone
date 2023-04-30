@@ -109,13 +109,14 @@ const Container = styled.div`
   max-width: 1400px;
 
   margin: auto;
-  background-color: rgb(234, 237, 237);
+ 
   position: relative;
 `;
 
 const Main = styled.div`
   padding: 15px;
-
+  background-color: rgb(234, 237, 237);
+  margin-top: 55px;
 `;
 
 const FormContainer = styled.form`

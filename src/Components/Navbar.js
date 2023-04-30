@@ -1,8 +1,22 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { useStateValue } from "../StateProvider";
+import "../index.css"
 
+export const Title = () => (
+  <Link to="/" className="nav-ul">
+      <ul>
+          <li>M</li>
+          <li>E</li>
+          <li>E</li>
+          <li>S</li>
+          <li>H</li>
+          <li>O</li>
+      </ul>
+  </Link>
+);
 
 function Navbar() {
  const logedUser = JSON.parse(localStorage.getItem("loginDetails"));
@@ -24,14 +38,8 @@ function Navbar() {
     <Container>
       <Inner>
         <Logo onClick={() => navigate("/")}>
-          <img  src='https://etimg.etb2bimg.com/photo/87203105.cms' alt="" />
+          <Title />
         </Logo>
-        <SearchBar>
-          <input type="text" placeholder="Try Saree, Kurti or Search by Product Code" />
-          <SearchIcon onClick={() => navigate("/addproduct")}>
-            <img src="./searchIcon.png" alt="" />
-          </SearchIcon>
-        </SearchBar>
         <RightContainer>
           <NavButton
             onClick={user ? () => signOut() : () => navigate("/login")}
@@ -49,12 +57,6 @@ function Navbar() {
           </BasketButton>
         </RightContainer>
       </Inner>
-      <MobileSearchbar>
-        <input type="text" placeholder="Search..." />
-        <SearchIcon onClick={() => navigate("/addproduct")}>
-          <img src="./searchIcon.png" alt="" />
-        </SearchIcon>
-      </MobileSearchbar>
     </Container>
   );
 }
@@ -68,90 +70,32 @@ const Container = styled.div`
   top:0;
   position: sticky;
   z-index:2000;
-
-
+ 
   @media only screen and (max-width: 767px) {
     height: 120px;
     flex-direction: column;
   }
 `;
 const Inner = styled.div`
-  width: 100%;
+   width: 95%;
   display: flex;
-  align-items: center;
-
+  justify-content: space-between;
+   margin: 7px 28px;
+   margin-top: 45px;
+  box-shadow: 0 5px 5px 2px gray;
+  
   @media only screen and (max-width: 767px) {
     justify-content: space-between;
   }
 `;
 
 const Logo = styled.div`
-  margin-left: 20px;
+  margin-left: 70px;
+  margin-right:180px
   cursor: pointer;
-  img {
-    width: 72px;
-    margin-top: 10px;
-  }
-`;
-const SearchBar = styled.div`
-  height: 35px;
-  flex: 1;
-  margin: 0px 15px;
-  display: flex;
-  align-items: center;
-
-  input {
-    flex: 1;
-    width: 100%;
-    height: 86%;
-    border-radius: 5px 0px 0px 5px;
-
-    &::placeholder {
-      padding-left: 5px;
-    }
-  }
-
-  @media only screen and (max-width: 767px) {
-    display: none;
-  }
+  margin-top:20px;
 `;
 
-const MobileSearchbar = styled.div`
-  height: 35px;
-  width: 90%;
-  display: flex;
-  align-items: center;
-  padding: 10px;
-
-  input {
-    flex: 1;
-    width: 100%;
-    height: 100%;
-    border-radius: 5px 0px 0px 5px;
-
-    &::placeholder {
-      padding-left: 10px;
-    }
-  }
-
-  @media only screen and (min-width: 768px) {
-    display: none;
-  }
-`;
-
-const SearchIcon = styled.div`
-  background-color: rgb(244, 51, 151);
-  height: 100%;
-  width: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 0px 5px 5px 0px;
-  img {
-    width: 22px;
-  }
-`;
 const RightContainer = styled.div`
   display: flex;
   align-items: center;
@@ -163,13 +107,13 @@ const RightContainer = styled.div`
 
 const NavButton = styled.div`
   color: black;
-  padding: 5px;
+   padding: 5px;
   height: 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
-  margin-right: 15px;
+  margin-right: 20px;
 
   p {
     &:nth-child(1) {

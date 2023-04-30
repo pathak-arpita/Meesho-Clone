@@ -7,10 +7,29 @@ export const initialState = {
 export const getBasketTotal = (basket) =>
   basket.reduce((amount, item) => item.price + amount, 0);
 
-const reducer = (state, action) => {
+  const cart = [];
+const reducer = (state=cart, action) => {
   // console.log("action >>>>", action);
-
+  const product = action.payload;
   switch (action.type) {
+    case "ADDITEM":
+      const exist = state.find((x)=>x.id === product.id);
+      if(exist){
+          return state.map((x) =>
+           x.id === product.id ? {...x , qty : x.qty+1} : x);
+      }
+      else{
+          const product = action.payload;
+          return[
+              ...state , 
+              {
+                  ...product,
+                  qty : 1 ,
+
+              }
+          ]
+      }
+      break;
     case "ADD_TO_BASKET":
       return {
         ...state,
